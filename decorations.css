@@ -1,3 +1,18 @@
 body {
     background-color: PaleGoldenRod;
 }
+ h1{
+    font-size: 40px;
+    font-family: Courier
+}
+a{ 
+    color: #baaaef;
+    font-size: medium;
+    text-decoration: none;
+    font-family: fantasy;
+    text-align: right;
+}
+p{
+      font-family: Courier;
+    text-align: center;
+}
