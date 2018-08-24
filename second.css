@@ -1,0 +1,30 @@
+body {
+    height: 850px;
+    background: linear-gradient(to top, #66ff66 0%, #00ffff 100%)
+}
+iframe {
+    text-align: center;
+}
+h1 {
+    font-family: sans-serif;
+    text-align: center;
+}
+.list {
+    text-align: center;
+    font-family: sans-serif;
+}
+a {
+    font-size: large;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: blue;
+}
+.Home {
+    text-align: left;
+}
+.Third {
+    text-align: center;
+}
+.fourth {
+    text-align: right;
+}
