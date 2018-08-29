@@ -15,5 +15,23 @@ background:  linear-gradient(to bottom, #99ffcc 0%, #ffcccc 100%);
 /* Header **/
 header{
     background:#a7e5fd;
-    color: #021c1e;
+    color: #4f6772;
+    padding-top: 30px;
+    min-height:70px;
+    border-bottom: #ffcccc 8px solid;
+}
+header a {
+color: #4f6772;
+text-decoration: none;
+text-transform: none;
+font-size: 19px; 
+}
+header ul {
+    margin: 0;
+    padding: 0;
+}
+header li {
+    display: inline;
+    float: left;
+    padding: 0 20px 0 20px;
 }
