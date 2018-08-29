@@ -1,0 +1,19 @@
+body{
+font-family: 'Josefin Sans','Josefin Slab', sans-serif;
+font-size: 20px;
+line-height: 1;
+padding: 0;
+margin: 0;
+background:  linear-gradient(to bottom, #99ffcc 0%, #ffcccc 100%);
+}
+/* Global */
+.container{
+    width: 80%;
+    margin: auto;
+    overflow:hidden;
+}
+/* Header **/
+header{
+    background:#a7e5fd;
+    color: #021c1e;
+}
