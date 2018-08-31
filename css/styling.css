@@ -120,6 +120,9 @@ margin-bottom: 10px;
 #blogplace p {
 font-size:20px ;
 }
+.container p {
+  color:#4f6772;
+}
 .doggy img{
     width: 50%;
     height: 50%;
@@ -129,6 +132,9 @@ font-size:20px ;
 }
 .righty img{
     float:right;
+}
+.color p{
+    color:#ffffff;
 }
 #boxes .box{
     float: none;
