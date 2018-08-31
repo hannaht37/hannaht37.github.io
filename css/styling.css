@@ -130,6 +130,11 @@ font-size:20px ;
 .righty img{
     float:right;
 }
+#boxes .box{
+    float: none;
+    text-align: center;
+    width: 100%;
+}
 /*contactme */
 
 #contactme {
