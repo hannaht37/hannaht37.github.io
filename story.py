@@ -46,7 +46,7 @@ def askHelp(): # asks for a decison for the user's input
     
 def dSoldier(): # asks for a decision for an army from the user
     time.sleep(0.5)
-    hlp = str(input("Do we call for "+Fore.BLUE+"soldiers"+Fore.RESET+"? "))
+    hlp = str(input("Do we call for "+Fore.BLUE+"soldiers"+Fore.RESET+" to help you? "))
     if (hlp == str("Y")) :
         hlp = True
     elif (hlp == str("K")): 
@@ -129,7 +129,7 @@ def directions(): #if the user does not enter the intended letters for input, th
     print('Only enter '+Fore.GREEN+'"Y"'+Fore.RESET+' for "Yes" or '+Fore.RED+'"K"'+Fore.RESET+' for "No" for the answers.')
 
 #Story
-start = input("Press"+Fore.CYAN+" enter "+Fore.RESET+"to start. ")
+start = input("Press"+Fore.CYAN+' "enter" '+Fore.RESET+"to start. ")
 time.sleep(0.5)
 directions()
 time.sleep(0.5)
@@ -144,13 +144,13 @@ if (hlp == True) :
     print ("The customers die fighting the bread.")
     swrd = dSoldier() #Decision2a
     if swrd == True :
-        print ("The army arrives.")
+        print ("The army arrives to help you.")
         plan = dAttackBread() #Decision3a
         if plan == True :
             print("The army is decimated by wheat, and everyone dies.")
             gameLose()
         elif plan == False :
-            print("The army sneaks around and eats the bread.")
+            print("The army sneaks around the store and eats the bread.")
             gameWin()
     elif swrd == False :
         print ("Your family decides to claim back your store.")
@@ -184,4 +184,4 @@ elif (hlp == False) :
         elif rev == False:
             print("You end up with a case of depression and die alone.")
             gameLose()
-        
+exit = input("Press " + Fore.CYAN + '"enter"' + Fore.RESET + " to exit the program. ")
