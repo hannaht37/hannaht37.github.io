@@ -1,5 +1,9 @@
+import sys
 import time
 from colorama import Fore, Back, Style
+import termcolor
+import sys
+from termcolor import colored, cprint
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -10,31 +14,39 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 class fg: 
-        black='\033[30m'
-        red='\033[31m'
-        green='\033[32m'
-        orange='\033[33m'
-        blue='\033[34m'
-        purple='\033[35m'
-        cyan='\033[36m'
-        lightgrey='\033[37m'
-        darkgrey='\033[90m'
-        lightred='\033[91m'
-        lightgreen='\033[92m'
-        yellow='\033[93m'
-        lightblue='\033[94m'
-        pink='\033[95m'
-        lightcyan='\033[96m'
+    black='\033[30m'
+    red='\033[31m'
+    green='\033[32m'
+    orange='\033[33m'
+    blue='\033[34m'
+    purple='\033[35m'
+    cyan='\033[36m'
+    lightgrey='\033[37m'
+    darkgrey='\033[90m'
+    lightred='\033[91m'
+    lightgreen='\033[92m'
+    yellow='\033[93m'
+    lightblue='\033[94m'
+    pink='\033[95m'
+    lightcyan='\033[96m'
         
 #Functions
+y= (" ")
+
+def delay_print(s):
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.025)
+    return y
+
 def greeting(name): #asks for the user's name
     time.sleep(0.5)
-    print("Hi " + bcolors.UNDERLINE + fg.lightcyan + name + bcolors.ENDC + "; the evil bread has taken over your store.")
-    return name
+    print(delay_print("Hi " + bcolors.UNDERLINE + fg.lightcyan + name + bcolors.ENDC + "; the evil bread has taken over your store."))
     
 def askHelp(): # asks for a decison for the user's input
     time.sleep(0.5)
-    hlp = str(input("Do you ask your customers for help? "))
+    hlp = str(input("Do you " + Fore.YELLOW + "ask" + Fore.RESET + " your " + Fore.BLUE + "customers" + Fore.RESET + " for help? "))
     if (hlp == str("Y")) : 
         hlp = True
     elif (hlp == str("K")) :
@@ -47,7 +59,7 @@ def askHelp(): # asks for a decison for the user's input
 def dSoldier(): # asks for a decision for an army from the user
     time.sleep(0.5)
     hlp = str(input("Do we call for "+Fore.BLUE+"soldiers"+Fore.RESET+" to help you? "))
-    if (hlp == str("Y")) :
+    if (hlp == str("Y")):
         hlp = True
     elif (hlp == str("K")): 
         hlp = False
@@ -58,7 +70,7 @@ def dSoldier(): # asks for a decision for an army from the user
 
 def dFarmer(): # asks the user for a decision about a farmer's offer
     time.sleep(0.5)
-    pigs = str(input("Do you accept the farmer's offer for a "+Fore.BLUE+"livestock army"+Fore.RESET+"? "))
+    pigs = str(input("Do you " + Fore.YELLOW + "accept" + Fore.RESET + " the farmer's offer for a "+Fore.BLUE+"livestock army"+Fore.RESET+"? "))
     if (pigs == str("Y")):
         pigs = True
     elif (pigs == str("K")):
@@ -118,22 +130,22 @@ def dDestroy(): # asks the user about a decision to destroy the store
 
 def gameWin(): #tells the user if they won in the story
     time.sleep(0.5)
-    print (Back.GREEN+"You win!"+Back.RESET)
+    print(delay_print(Back.GREEN+"You win!"+Back.RESET))
     
 def gameLose(): #tells the user if they lost in the story
     time.sleep(0.5)
-    print (Back.RED+"You lose..."+Back.RESET)
+    print(delay_print(Back.RED+"You lose..."+Back.RESET))
     
 def directions(): #if the user does not enter the intended letters for input, this will appear
     time.sleep(0.5)
-    print('Only enter '+Fore.GREEN+'"Y"'+Fore.RESET+' for "Yes" or '+Fore.RED+'"K"'+Fore.RESET+' for "No" for the answers.')
+    print(delay_print('Only enter '+Fore.GREEN+'"Y"'+Fore.RESET+' for "Yes" or '+Fore.RED+'"K"'+Fore.RESET+' for "No" for the answers.'))
 
 #Story
 start = input("Press"+Fore.CYAN+' "enter" '+Fore.RESET+"to start. ")
 time.sleep(0.5)
 directions()
 time.sleep(0.5)
-print("You are a baker. To help your business survive, you made evil bread.")
+print(delay_print("You are a baker. To help your business survive, you made evil bread."))
 time.sleep(0.5)
 name = str(input("What is your name? "))
 time.sleep(0.5)
@@ -141,47 +153,47 @@ greeting(name)
 time.sleep(0.5)
 hlp = askHelp() #Decision 1
 if (hlp == True) :
-    print ("The customers die fighting the bread.")
+    print(delay_print("The customers die fighting the bread."))
     swrd = dSoldier() #Decision2a
     if swrd == True :
-        print ("The army arrives to help you.")
+        print(delay_print("The army arrives to help you."))
         plan = dAttackBread() #Decision3a
         if plan == True :
-            print("The army is decimated by wheat, and everyone dies.")
+            print(delay_print("The army is decimated by wheat, and everyone dies."))
             gameLose()
         elif plan == False :
-            print("The army sneaks around the store and eats the bread.")
+            print(delay_print("The army sneaks around the store and eats the bread."))
             gameWin()
     elif swrd == False :
-        print ("Your family decides to claim back your store.")
+        print(delay_print ("Your family decides to claim back your store."))
         plan = dDestroy() #Decision3b
         if plan == True :
-            print("Your family fights the bread long after your death.")
+            print(delay_print("Your family fights the bread long after your death."))
             gameLose()
         elif plan == False :
-            print("The store is burned;")
-            print("however, you are the town hero.")
+            print(delay_print("The store is burned;"))
+            print(delay_print("however, you are the town hero."))
             gameWin()
 elif (hlp == False) :
-    print("Your family gets captured by the bread; ")
-    print("Some farmers offer assistance.")
+    print(delay_print("Your family gets captured by the bread; "))
+    print(delay_print("Some farmers offer assistance."))
     pigs = dFarmer() #Decision2b
     if pigs == True :
-        print("The pigs eat all the bread, but destroy your store in the process.")
+        print(delay_print("The " + fg.pink + "pigs" + bcolors.ENDC + " eat all the bread, but destroy your store in the process."))
         dec = moveAway() #Decision4a
         if dec == True:
-            print("You and your family live happily ever after.")
+            print(delay_print("You and your family live happily ever after."))
             gameWin()
         elif dec == False:
-            print("Your family attacks the bread and dies.")
+            print(delay_print("Your family attacks the bread and dies."))
             gameLose()
     elif pigs == False :
-        print("Your family is absorbed and killed by the bread.")
+        print(delay_print("Your family is absorbed and killed by the bread."))
         rev = revenge() #Decision4b
         if rev == True:
-            print("You eat all of the the bread.")
+            print(delay_print("You eat all of the the bread."))
             gameWin()
         elif rev == False:
-            print("You end up with a case of depression and die alone.")
+            print(delay_print("You end up with a case of depression and die alone."))
             gameLose()
-exit = input("Press " + Fore.CYAN + '"enter"' + Fore.RESET + " to exit the program. ")
+exit = input("Press " + Fore.CYAN + '"enter"' + Fore.RESET + " to exit the program. ")    
