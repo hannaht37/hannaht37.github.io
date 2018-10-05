@@ -1,10 +1,18 @@
+"""
+This is a story about a baker, (the user), who's store is overrun by bread
+Our program takes the user's input and conveys the answers into a story
+You need Colorama and Termcolor to run this program
+Credits: Julian Hoque and Hannah Truong
+"""
+
 import sys
 import time
 from colorama import Fore, Back, Style
 import termcolor
 import sys
 from termcolor import colored, cprint
-class bcolors:
+
+class bcolors: 
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKGREEN = '\033[92m'
@@ -13,6 +21,7 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+
 class fg: 
     black='\033[30m'
     red='\033[31m'
