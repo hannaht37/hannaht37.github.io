@@ -1,8 +1,10 @@
 """
 This is a story about a baker, (the user), who's store is overrun by bread
 Our program takes the user's input and conveys the answers into a story
-You need Colorama and Termcolor to run this program
-Credits: Julian Hoque and Hannah Truong
+You need Colorama and Termcolor to run this program;
+To do this, add the commands 'sudo pip3 install termcolor' and 'sudo pip3 install colorama' 
+in your bash (on Cloud 9 or Git) for the program to function
+Credits: Julian Hoque and Hannah Truong  © 2018
 """
 
 import sys
