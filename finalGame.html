@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Processing Demo</title>
+<script type="text/javascript" src="./processingCode.js"></script>
+</head>
+<body>
+
+
+<script type="text/processing">
+/**MY AVENGERS GAME
+  *Author: Hannah Truong
+  *Version: 3.0
+  */
+
+
+PImage background; PImage background2; PImage startScreen; //variables for the game
+PImage ironMan; PImage ironMan2;
+PFont font1; PFont font2;
+PImage plane; PImage plane2;int numPlanes = 3; int numPlanes2 = 2; 
+int[] lx = new int[numPlanes]; int[] ly = new int[numPlanes]; int count;
+int[] plx = new int[numPlanes2]; int[] ply = new int[numPlanes2];
+PImage burger; int numBurgers = 1; int[] bx = new int[numBurgers]; int[] by = new int[numBurgers]; 
+int x; int y; int px; int py; int Vy; int timer;
+int gamestate; int iAmSpeed; PImage costume;
+int score; int highscore;
+
+//loads the screen and images
+void setup(){
+  gamestate = 1;
+  size(970,590);
+  px = width/4;
+  py = height/2;
+  font1 = createFont("Courier New",18);
+  background = loadImage("./img/pixel-art-wallpaper-1.png");
+  background2 = loadImage("./img/pixel-art-wallpaper-2.png");
+  startScreen = loadImage("./img/yeeyee.png");
+  ironMan = loadImage("./img/ironMan.png");
+  ironMan2 = loadImage("./img/ironManPowered.png");
+  plane = loadImage("./img/plane.png");
+  plane2 = loadImage("./img/plane2.png");
+  burger = loadImage("./img/burger.png");
+  costume = ironMan;
+  for(int i =0; i < numPlanes; i++){
+    lx[i] = width + (int)random(50, 200) + 200*i;
+    ly[i] = height/2 + (int)random(-250,250);
+  }
+  for(int i =0; i < numPlanes2; i++){
+    plx[i] = width + (int)random(50, 200) + 200*i;
+    ply[i] = height/2 + (int)random(-250,250);
+  }
+  for(int i =0; i < numBurgers; i++){
+    bx[i] = width + (int)random(50, 200) + 200*i;
+    by[i] = height/2 + (int)random(-250,250);
+  }
+}
+
+void draw(){
+  timer++; //allows the costume to change for an amount of time
+  if(timer > 0){
+    costume = ironMan;
+  }
+  iAmSpeed++;
+  if(gamestate == 1){
+    image(startScreen, x, 0); // creates a start scren
+    fill(255);
+    textFont(font1);
+    textSize(30);
+    text("Welcome to the Avengers Initiative.",30, 400);
+    text("Click the mouse to start and to jump!", 30,425);
+    text("Avoid obstacles, collect burgers.",30,450);
+    if(mousePressed){
+      gamestate = 0;
+    }
+  }
+  if(score > highscore){
+    highscore = score;
+  }
+  if(gamestate == 0){ // code for when Iron Man dies
+    image(background, x, 0);
+    image(background2, x+background.width-6, 0);
+    image(background, x+2*background.width-12, 0);
+    image(costume,px,py);
+    fill(255);
+    textSize(18);
+    text("Score: " + score, width -170, 30);
+    text("High Score: " + highscore, width - 170, 50);
+    py = py + Vy;
+    Vy++;
+    accelerate();
+    checkIronMan();
+    x--;
+    if(x < -(2*background.width+10)){
+      x=0;
+    }
+    //Plane Code
+    for(int i = 0; i<numPlanes; i++){ // plane 1 code
+      lx[i]-= 2;
+      if(lx[i] < -10){
+        score++;
+        lx[i] = width + (int)random(50, 200);
+        ly[i] = height/2 + (int)random(-250,250);
+      }
+      if(abs((int)((px+17)-(lx[i]+7))) < 22 && abs((int)((py+42) - (ly[i]+41))) < 74){
+        gamestate = 2;
+      }
+      image(plane, lx[i], ly[i]);
+    }
+    for(int i = 0; i<numBurgers; i++){ // burger code
+      bx[i]-= 2;
+      if(bx[i] < -10){
+        bx[i] = width + (int)random(50, 200);
+        by[i] = height/2 + (int)random(-250,250);
+      }
+      if(abs((int)((px+17)-(bx[i]+7))) < 22 && abs((int)((py+42) - (by[i]+41))) < 74){
+        bx[i]+=2000;
+        score+=5;
+        costume = ironMan2;
+        timer = -250;
+      }
+      image(burger, bx[i], by[i]);
+    }
+   //Plane2 Code
+   if(score>3){
+      for(int i = 0; i<numPlanes2; i++){ // plane 2 code
+        plx[i]-= 2;
+        if(plx[i] < -10){
+          score++;
+          plx[i] = width + (int)random(50, 200);
+          ply[i] = height/2 + (int)random(-250,250);
+        }
+        if(abs((int)((px+17)-(plx[i]+89))) < 22 && abs((int)((py+42) - (ply[i]+44))) < 74){
+          gamestate = 2;
+        }
+          image(plane2, plx[i], ply[i]);
+      }
+     } 
+   if(score>100){ //boss level
+     text("Warning: Infinity Gauntlet! Get it to win!", -500, 250);
+   }
+  }
+  if(gamestate == 2){ // losing screen
+    score = 0;
+    background(0);
+    fill(255);
+    rect(200,300,500,70,40);
+    textSize(60);
+    fill(0);
+    if(mouseX > 200 && mouseX < 700 && mouseY > 300 && mouseY < 370){
+      fill(255,0,0);
+    }
+    text("  YOU LOSE :(", 200,360);
+    if(mouseX > 200 && mouseX < 700 && mouseY > 300 && mouseY < 370){
+      fill(255);
+      rect(200,300,500,70,40);
+      fill(255,0,0);
+      text(" PLAY AGAIN?", 230, 360);
+      if(mousePressed){
+        gamestate = 0;
+        py = 400;
+      }
+    }
+  }
+}
+
+void accelerate(){
+  if(mousePressed){
+    Vy=-12;
+    }
+}
+
+void checkIronMan(){
+  if(py < -100 || py > 590){
+    gamestate=2;
+  }
+}
+
+</script>
+
+<canvas id="sketch" style="border: 1px solid black;"></canvas>
+</body>
+</html>

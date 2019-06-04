@@ -2,50 +2,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Processing Demo</title>
-<script type="text/javascript" src="js/processingCode.js"></script>
+<script type="text/javascript" src="./processingCode.js"></script>
 </head>
 <body>
 
 
 <script type="text/processing">
+/**
+  *MY FIRST PROCESSING PROGRAM
+  *Author: Hannah Truong
+  *Version: 1.0
+  *@params: (usable variables necessary for this program)
+  */
+int x=0; //Must declare type
+int y;//both x and y are set to 0 initially
 
-void setup(){
-size(800,1200);
-background(0);
-}
-int x = 0;
-int speed = 2;
-int value = 0;
-int acc = 0;
-int s = 0;
-int fc = 0;
-
-void mousePressed(){
-if (mouseX > 140 && mouseX < 640 && mouseY > 55 && mouseY < 115){
-background(0);
-s = 0;
-}
-
+void setup(){ // runs once
+  size(700,500);
 }
 
 void draw(){
-stroke(4);
-fill(90);
-if (mouseX > 140 && mouseX < 640 && mouseY > 55 && mouseY < 115){
-fill(255,55,0);
-}
-rect(140, 55, 500, 60, 20);
-fill(255);
-textSize(40);
-text("Click this button to reset", 150, 100); 
-fill(random(200),random(255),random(255));
-stroke(4);
-ellipse(mouseX, mouseY, s, s); 
-if (acc %15 == 0 && s < 300){
-s ++;
-}
-acc ++;
+    y++;
+    //ellipse(330,210,100,70); // runs infinite loop
 
+    fill(random(0,255), random(0,255), random(0,255));
+    ellipse(mouseX,mouseY,x+100,y);
+    if(y%10==0){
+      x++; // x=x+1
+     }
+    if(mousePressed){
+      background(random(0,255), random(0,255), random(0,255));
+      x=0+100;
+      y=0;
+    }
+
+    //rect(0,0,100,90); // rect(x, y, width(DX), height(DY))
+    
 }
 
 </script>
